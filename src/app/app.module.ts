@@ -8,6 +8,7 @@ import { IsOpenComponent } from './container/is-open/is-open.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminForFortuneGardenComponent } from './container/admin-for-fortune-garden/admin-for-fortune-garden.component';
 import { ContainerComponent } from './container/container.component';
+import { SignatureComponent } from './signature/signature.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ContainerComponent } from './container/container.component';
     DateComponent,
     IsOpenComponent,
     AdminForFortuneGardenComponent,
-    ContainerComponent
+    ContainerComponent,
+    SignatureComponent
   ],
   imports: [
     BrowserModule,
