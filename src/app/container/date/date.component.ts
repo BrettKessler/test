@@ -10,7 +10,7 @@ export class DateComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.today = moment();
+    this.today = moment().format('lll');
   }
 
 }

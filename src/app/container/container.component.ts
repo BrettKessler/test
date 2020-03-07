@@ -13,9 +13,9 @@ export class ContainerComponent implements OnInit {
   constructor(public isOpen: EventService) { }
 
   ngOnInit() {
-    this.isOpen.open.subscribe(value => {
-      console.log('hello');
-    })
+    this.isOpen.getIsOpen().then((data: any) => {
+      this.open = data.data;
+    });
   }
 
 }

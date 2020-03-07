@@ -13,11 +13,6 @@ export class AdminForFortuneGardenComponent implements OnInit {
   }
 
   onClick(value){
-    if (value === 'open') {
-      this.isOpen.isOpen(true);
-    } else {
-      this.isOpen.isOpen(false);
-    }
+    this.isOpen.setStatus(value);
   }
-
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-is-open',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./is-open.component.scss']
 })
 export class IsOpenComponent implements OnInit {
-
+ @Input() open: string;
   constructor() { }
 
   ngOnInit() {

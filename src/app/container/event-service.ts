@@ -1,19 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root',
 })
 export class EventService {
-      public open: Subject<boolean> = new Subject<boolean>()
+    public url = environment.url;
 
-    constructor() { }
+    httpOptions = {
+        headers: new HttpHeaders({})
+    };
 
-    isOpen(value) {
-        if (value === true) {
-            this.open.next(true)
-        } else {
-            this.open.next(false)
-        }
+    constructor(public http: HttpClient) {}
+
+    getIsOpen() {
+        return this.http.get(this.url + `check-on-status`).toPromise();
+    }
+
+    public setStatus(value) {
+        const data = {value};
+        return this.http.patch(this.url + 'update-status', data).subscribe(res => {
+            console.log(res);
+          },
+          (err: HttpErrorResponse) => {
+            console.log(err)
+          })
     }
 }
