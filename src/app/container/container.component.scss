@@ -9,6 +9,13 @@
     padding: 30px;
     border-radius: 20px;
     box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.253);
+    @media only screen and (max-width: 600px) {
+        position:inherit;
+        top: none;
+        left: none;
+        transform: none;
+        margin: 20px;
+    }
 }
 
 #bottom-left {
