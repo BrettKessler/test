@@ -1,14 +1,15 @@
-<h2>Hello Grimes,</h2>
-<div *ngIf="open === 'yes'">
-    <h1><span>Yes</span> &mdash; Fortune Garden Is <span class="text-success">Open</span></h1>
+<h2 class="h2">Is Fortune Garden Open?</h2>
+<div class='text'>
+    <div *ngIf="open === 'yes'">
+        <h1><span class="text-success text">Yes</span></h1>
+    </div>
+    <div *ngIf="open === 'no'">
+        <h1><span class="text-danger text">No</span></h1>
+    </div>
+    <div *ngIf="open === 'maybe'">
+        <h1><span class="text">No Idea</span></h1>
+    </div>
 </div>
-<div *ngIf="open === 'no'">
-    <h1><span>No</span> &mdash; Fortune Garden Is <span class="text-danger">Not Open</span></h1>
-</div>
-<div *ngIf="open === 'maybe'">
-    <h1>We Have No Clue If Fortune Garden Is Open</h1>
-</div>
-<hr />
 <p id="small-text">(This is just for fun, please call or drive by to check. *Not affiliated with Fortune Garden.)</p>
 
 

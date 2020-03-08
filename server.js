@@ -6,7 +6,8 @@ const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const Fortune = require('./backend/models/fortune');
-var router = express.Router()
+const https = require('https');
+const axios = require('axios').default;
 
 mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -48,6 +49,29 @@ app.get(('/check-on-status'), (req, res) => {
         }
     })
 });
+
+app.get('/forecast', (req, res) => {
+    getForecast(req, res);
+})
+
+
+function getForecast(req, res){
+    const exclude = `exclude=[minutely,hourly,daily]`;
+    axios.get(`https://api.darksky.net/forecast/${process.env.DARK_SKY_KEY}/41.6755528, -93.789241?${exclude}?units=[auto]`, (req, res) )
+    .then(function (response) {
+        // handle success
+        return res.status(200).json({
+            data: response.data
+        })
+    })
+    .catch(function (error) {
+        // handle error
+        console.log(error);
+    })
+    .then(function () {
+        // always executed
+    });
+}
 
 app.patch('/update-status', (req, res) => {
     const value = req.body.value || 'no';

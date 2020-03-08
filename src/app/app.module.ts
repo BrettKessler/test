@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminForFortuneGardenComponent } from './container/admin-for-fortune-garden/admin-for-fortune-garden.component';
 import { ContainerComponent } from './container/container.component';
 import { SignatureComponent } from './signature/signature.component';
+import { DogPoopForecastComponent } from './dog-poop-forecast/dog-poop-forecast.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SignatureComponent } from './signature/signature.component';
     IsOpenComponent,
     AdminForFortuneGardenComponent,
     ContainerComponent,
-    SignatureComponent
+    SignatureComponent,
+    DogPoopForecastComponent
   ],
   imports: [
     BrowserModule,

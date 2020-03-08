@@ -27,4 +27,8 @@ export class EventService {
             console.log(err)
           })
     }
+
+    getWeather() {
+        return this.http.get(this.url + `forecast`).toPromise();
+    }
 }
