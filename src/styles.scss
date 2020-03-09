@@ -15,3 +15,26 @@ body{
     font-size: 50px !important;
     text-transform: uppercase;
 }
+
+#hello {
+    margin: 3% 25%;
+    font-weight: bold;
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.253);
+    @media only screen and (max-width: 600px) {
+        position:inherit;
+        top: none;
+        left: none;
+        transform: none;
+        margin: 20px;
+    }
+}
+
+#bottom-left {
+    text-align: center;
+    font-size: 9px;
+    color: gray;
+}

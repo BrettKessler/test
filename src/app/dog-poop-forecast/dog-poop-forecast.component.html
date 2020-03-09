@@ -5,6 +5,7 @@
     </div>
 </div>
 <div *ngIf="weather">
+    <i id="icon" [class]="weatherIcon(weather?.icon)"></i>
     <p class="temp">{{weather?.temperature}} &#x2109;</p>
     <span class="p-style" *ngIf="weather?.temperature < 32">There's probably poop, but it's frozen.</span>
     <span class="p-style" *ngIf="weather?.temperature > 32 && weather?.temperature < 50">There's poop, and it's thawing.</span>
@@ -13,3 +14,5 @@
     <span class="p-style" *ngIf="weather?.temperature > 80 && weather?.temperature < 100"> It's hot out, there's  lots of poop, and it's steaming.</span>
     <span class="p-style" *ngIf="weather?.temperature > 100"> Why are you outside? The poop is steaming.</span>
 </div>
+
+

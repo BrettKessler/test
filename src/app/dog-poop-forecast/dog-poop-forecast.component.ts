@@ -13,7 +13,20 @@ export class DogPoopForecastComponent implements OnInit {
   ngOnInit() {
     this.service.getWeather().then((data: any) => {
       this.weather = data.data.currently;
+      console.log(this.weather);
     })
+  }
+
+  weatherIcon(icon) {
+    switch(icon) {
+      case 'cloudy':
+        return 'wi wi-cloud'
+      case 'rain':
+        return 'wi wi-showers'
+      default: 
+        return 'wi wi-day-sunny'
+    }
+
   }
 
 }

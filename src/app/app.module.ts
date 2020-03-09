@@ -13,6 +13,7 @@ import { SignatureComponent } from './signature/signature.component';
 import { DogPoopForecastComponent } from './dog-poop-forecast/dog-poop-forecast.component';
 import { FireworksComponent } from './fireworks/fireworks.component';
 import { McdonaldsComponent } from './mcdonalds/mcdonalds.component';
+import { NightModeComponent } from './night-mode/night-mode.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { McdonaldsComponent } from './mcdonalds/mcdonalds.component';
     SignatureComponent,
     DogPoopForecastComponent,
     FireworksComponent,
-    McdonaldsComponent
+    McdonaldsComponent,
+    NightModeComponent
   ],
   imports: [
     BrowserModule,
