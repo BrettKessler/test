@@ -14,6 +14,9 @@ import { DogPoopForecastComponent } from './dog-poop-forecast/dog-poop-forecast.
 import { FireworksComponent } from './fireworks/fireworks.component';
 import { McdonaldsComponent } from './mcdonalds/mcdonalds.component';
 import { NightModeComponent } from './night-mode/night-mode.component';
+import { SuggestionsPageComponent } from './suggestions-page/suggestions-page.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,13 +30,16 @@ import { NightModeComponent } from './night-mode/night-mode.component';
     DogPoopForecastComponent,
     FireworksComponent,
     McdonaldsComponent,
-    NightModeComponent
+    NightModeComponent,
+    SuggestionsPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

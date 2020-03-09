@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const Fortune = require('./backend/models/fortune');
 const https = require('https');
 const axios = require('axios').default;
+const email = require('./services/email-service');
 
 mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -49,6 +50,11 @@ app.get(('/check-on-status'), (req, res) => {
         }
     })
 });
+
+app.post(('/submit-contact'), (req, res) => {
+    const contactData = req.body;
+    email.sendContactUs(contactData);
+})
 
 app.get('/forecast', (req, res) => {
     getForecast(req, res);
