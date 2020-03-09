@@ -11,6 +11,8 @@ import { AdminForFortuneGardenComponent } from './container/admin-for-fortune-ga
 import { ContainerComponent } from './container/container.component';
 import { SignatureComponent } from './signature/signature.component';
 import { DogPoopForecastComponent } from './dog-poop-forecast/dog-poop-forecast.component';
+import { FireworksComponent } from './fireworks/fireworks.component';
+import { McdonaldsComponent } from './mcdonalds/mcdonalds.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { DogPoopForecastComponent } from './dog-poop-forecast/dog-poop-forecast.
     AdminForFortuneGardenComponent,
     ContainerComponent,
     SignatureComponent,
-    DogPoopForecastComponent
+    DogPoopForecastComponent,
+    FireworksComponent,
+    McdonaldsComponent
   ],
   imports: [
     BrowserModule,
