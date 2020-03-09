@@ -3,7 +3,7 @@
             <h2>Contact Us</h2>
             <p>Want to yell at me or tell me what to add? Contact me below! Depending on how nice you are, I may or may not respond.</p>
             <hr>
-            <form [formGroup]="contactUs" class="col-md-12" (ngSubmit)="onContactUs(contactUs.value)" novalidate>
+            <form [formGroup]="contactUs" class="col-md-12" (ngSubmit)="onContactUs()" novalidate>
             <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputUserName">Full Name</label>
