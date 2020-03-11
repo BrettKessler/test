@@ -6,9 +6,15 @@ const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const Fortune = require('./backend/models/fortune');
+const KwikStar = require('./backend/models/kwik-star');
 const https = require('https');
 const axios = require('axios').default;
 const email = require('./services/email-service');
+const puppeteer = require('puppeteer');
+const ical = require('node-ical');
+const calParse = require('cal-parser');
+const schedule = require('node-schedule');
+const moment = require('moment');
 
 mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -59,6 +65,56 @@ app.post(('/submit-contact'), (req, res) => {
 app.get('/forecast', (req, res) => {
     getForecast(req, res);
 })
+
+app.get('/kwik-star', (req, res) => {
+    getQuickStar(req, res);
+})
+
+app.get('/daily-deals', (req, res) => {
+    const today = req.query.date;
+    let deals = [];
+    KwikStar.find().then((data) => {
+        data.forEach((obj, i) => {
+            let startDate = obj.startDate;
+            let endDate = obj.endDate;          
+            if (moment(today).isSame(startDate, 'day')){
+                deals.push(data[i]);
+            }
+        })
+        return res.status(200).json({
+            data: deals
+        });
+    })
+
+})
+
+schedule.scheduleJob('0 0 0 * * 1', function(){
+    getDailyDeals();
+});
+
+// app.get('/daily-deals', (req, res) => {
+//     getDailyDeals(req, res);
+// })
+
+function getDailyDeals(req, res) {
+    ical.async.fromURL('https://tockify.com/api/feeds/ics/food.specials', function(err, data) {
+        const parse = data.body;
+        const parsed = calParse.parseString(parse);
+        const events = parsed.events;
+
+        events.forEach(data => {
+            const kwikStarData = new KwikStar({
+                description: data.description.value,
+                summary: data.summary.value,
+                url: data.url.value,
+                startDate: data.dtstart.value,
+                endDate: data.dtend.value
+            })
+            kwikStarData.save();
+        })
+    });
+}
+
 
 
 function getForecast(req, res){
