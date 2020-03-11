@@ -13,7 +13,6 @@ export class DogPoopForecastComponent implements OnInit {
   ngOnInit() {
     this.service.getWeather().then((data: any) => {
       this.weather = data.data.currently;
-      console.log(this.weather);
     })
   }
 

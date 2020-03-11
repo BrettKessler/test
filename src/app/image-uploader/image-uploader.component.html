@@ -1,0 +1,25 @@
+<h2 class="h2">Toilet Paper Status</h2>
+<div *ngIf="!image">
+  <div class="spinner-border text-dark" role="status">
+      <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<div *ngIf='image'>
+  <div class="image-container">
+    <img src="{{image}}" alt="Approved Image">
+  </div>
+</div>
+<div *ngIf="warningLabel" class="alert alert-danger" role="alert">
+    File Type Must Be .png, .jpeg, or .jpg 
+</div>
+<div *ngIf="successLabel" class="alert alert-success" role="alert">
+  Your Image Has Been Submitted For Review, Weirdo.
+</div>
+<div class="row">
+  <div class="align">
+    <input  type="file" id="files" class="hidden" (change)="onFileSelected($event)">
+    <button type="button" (click)="onUpload()">Upload</button>
+  </div>
+</div>
+
+

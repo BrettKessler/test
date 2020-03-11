@@ -14,7 +14,6 @@ export class KwikStarComponent implements OnInit {
 
   ngOnInit() {
     this.kwik.onGetDailyDeals(this.currentDate).then((data: any) => {
-      console.log(data.data);
       this.products = data.data;
     })
   }

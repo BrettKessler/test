@@ -18,6 +18,7 @@ import { SuggestionsPageComponent } from './suggestions-page/suggestions-page.co
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { KwikStarComponent } from './kwik-star/kwik-star.component';
+import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { KwikStarComponent } from './kwik-star/kwik-star.component';
     McdonaldsComponent,
     NightModeComponent,
     SuggestionsPageComponent,
-    KwikStarComponent
+    KwikStarComponent,
+    ImageUploaderComponent
   ],
   imports: [
     BrowserModule,

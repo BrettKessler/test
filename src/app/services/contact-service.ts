@@ -17,6 +17,4 @@ export class ContactService {
     onSubmitContactForm(value) {
         return this.http.post(this.url + `submit-contact`, value).toPromise();
     }
-
-
 }

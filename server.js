@@ -1,12 +1,39 @@
+
 require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path')
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, './uploads');
+    },
+    filename: function(req, file, cb){
+        cb(null, Date.now() + file.originalname); 
+    }
+})
+const fileFilter = (req, file, cb) => {
+    if(file.mimetype === 'image/png' || file.mimetype === 'image/jpeg' || file.mimetype === 'img/jpg') {
+        cb(null, true)
+    } else {
+        cb(null, false);
+    }
+    
+}
+const upload = multer({ 
+    storage: storage, 
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+});
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const Fortune = require('./backend/models/fortune');
 const KwikStar = require('./backend/models/kwik-star');
+const Image = require('./backend/models/images');
+const ApprovedImage = require('./backend/models/approved-image');
 const https = require('https');
 const axios = require('axios').default;
 const email = require('./services/email-service');
@@ -26,10 +53,9 @@ mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopolo
   console.log('Connection Failed!')
 })
 
+app.use('/uploads', express.static('uploads'))
+
 app.use(express.static(__dirname + '/dist/fortune'));
-
-app.use ( bodyParser.json( { type: '*/*' }));
-
 
 app.use(function (req, res, next) {
 
@@ -37,7 +63,7 @@ app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Credentials" , "true")
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    "Origin, X-Requested-With, Accept, Authorization"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -46,6 +72,53 @@ app.use(function (req, res, next) {
   next();
 
 });
+
+app.get('/images', (req, res) => {
+    Image.find().then(data => {
+        if(data) {
+            return res.status(200).json({
+                data: data
+            })
+        }
+    })
+})
+
+app.post('/user-upload-image', upload.single('image') , (req, res) => {
+    const tpImage = new Image({
+        tpImage: req.file.path
+    })
+    tpImage.save().then(result => {
+        return res.status(200).json({
+            message:'Image Successfully saved',
+            data: result
+        })
+    })
+})
+
+app.use ( bodyParser.json( { type: '*/*' }));
+
+app.get('/approved-image', (req, res) => {
+    ApprovedImage.find().then(result => {
+        return res.status(200).json({
+            message:'Image Successfully saved',
+            data: result
+        })
+    })
+})
+
+app.post(('/approved-image'), (req, res) => {
+    ApprovedImage.deleteMany({}, function(err, result){});
+    const approvedImage = new ApprovedImage({
+        approvedImage: req.body.imgAddress
+    })
+    
+    approvedImage.save().then(result => {
+        return res.status(200).json({
+            message:'Approved Successfully saved',
+            data: result
+        })
+    })
+})
 
 app.get(('/check-on-status'), (req, res) => {
     Fortune.find().then(data => {
@@ -89,7 +162,7 @@ app.get('/daily-deals', (req, res) => {
 })
 
 schedule.scheduleJob('0 0 0 * * 1', function(){
-    getDailyDeals();
+    // getDailyDeals();
 });
 
 // app.get('/daily-deals', (req, res) => {
