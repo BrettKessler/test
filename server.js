@@ -71,7 +71,7 @@ app.get('/kwik-star', (req, res) => {
 })
 
 app.get('/daily-deals', (req, res) => {
-    const today = req.query.date;
+    const today = new Date();
     let deals = [];
     KwikStar.find().then((data) => {
         data.forEach((obj, i) => {
