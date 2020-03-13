@@ -16,6 +16,7 @@ export class ImageUploaderComponent implements OnInit {
 
   ngOnInit() {
     this.imageUpload.onGetApprovedImage().then((data: any) => {
+      console.log(data.data);
       this.image = data.data[0].approvedImage;
     })
   }

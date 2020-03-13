@@ -188,8 +188,6 @@ function getDailyDeals(req, res) {
     });
 }
 
-
-
 function getForecast(req, res){
     const exclude = `exclude=[minutely,hourly,daily]`;
     axios.get(`https://api.darksky.net/forecast/${process.env.DARK_SKY_KEY}/41.6755528, -93.789241?${exclude}?units=[auto]`, (req, res) )

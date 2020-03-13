@@ -17,6 +17,7 @@ export class AdminForFortuneGardenComponent implements OnInit {
   ngOnInit() {
     this.getImages.onGetImages().then((data: any) => {
       this.images = data.data[data.data.length - 1];
+      console.log(this.images);
 
     })
   }
