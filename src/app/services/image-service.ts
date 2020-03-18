@@ -30,4 +30,9 @@ export class ImageService {
     onGetImages() {
         return this.http.get(this.url + `images`).toPromise();
     }
+
+    imageUpload(imageForm: FormData) {
+        console.log('image uploading');
+        return this.http.post(this.url + `upload`, imageForm);
+       }
 }

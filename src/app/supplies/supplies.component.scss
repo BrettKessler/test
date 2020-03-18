@@ -1,0 +1,42 @@
+.list {
+    list-style: none;
+}
+
+ul>li:nth-child(odd){
+    background-color: #efefef;
+    padding: 14px;
+    &:hover {
+        background-color: greenyellow;
+        cursor: pointer;
+    }
+}
+
+ul>li:nth-child(even){
+    background-color: #ffffff;
+    padding: 14px;
+    &:hover {
+        background-color: greenyellow;
+        cursor: pointer;
+    }
+}
+
+.margin-top {
+    margin-top: 20px;
+}
+
+p {
+    font-weight: 100;
+}
+
+.h2{
+    margin-top: 20px;
+}
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 500px;
+    overflow-y: auto;
+}

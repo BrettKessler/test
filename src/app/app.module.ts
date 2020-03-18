@@ -20,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { KwikStarComponent } from './kwik-star/kwik-star.component';
 import { ImageUploaderComponent } from './image-uploader/image-uploader.component';
 import { OneFourtyOneComponent } from './one-fourty-one/one-fourty-one.component';
+import { SuppliesComponent } from './supplies/supplies.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { OneFourtyOneComponent } from './one-fourty-one/one-fourty-one.component
     SuggestionsPageComponent,
     KwikStarComponent,
     ImageUploaderComponent,
-    OneFourtyOneComponent
+    OneFourtyOneComponent,
+    SuppliesComponent
   ],
   imports: [
     BrowserModule,

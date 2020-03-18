@@ -8,6 +8,8 @@ import { ImageService } from '../services/image-service';
 })
 export class ImageUploaderComponent implements OnInit {
   image: string;
+  imageObj: File;
+  imageUrl: string;
   selectedFile: File = null;
   warningLabel: boolean = false;
   successLabel: boolean = false;
@@ -20,6 +22,19 @@ export class ImageUploaderComponent implements OnInit {
       this.image = data.data[0].approvedImage;
     })
   }
+
+  onImagePicked(event: Event): void {
+    const FILE = (event.target as HTMLInputElement).files[0];
+    this.imageObj = FILE;
+   }
+
+   onImageUpload() {
+    const imageForm = new FormData();
+    imageForm.append('image', this.imageObj);
+    this.imageUpload.imageUpload(imageForm).subscribe(res => {
+      this.imageUrl = res['image'];
+    });
+   }
 
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];
