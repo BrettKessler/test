@@ -36,15 +36,16 @@ const KwikStar = require('./backend/models/kwik-star');
 const Image = require('./backend/models/images');
 const ApprovedImage = require('./backend/models/approved-image');
 const Supply = require('./backend/models/supply');
-const https = require('https');
 const axios = require('axios').default;
 const email = require('./services/email-service');
-const puppeteer = require('puppeteer');
 const ical = require('node-ical');
 const calParse = require('cal-parser');
 const schedule = require('node-schedule');
 const moment = require('moment');
-var ObjectId = require('mongodb').ObjectID;
+const ObjectId = require('mongodb').ObjectID;
+const accountSid = process.env.ACCOUNT_SID_TWILLIO;
+const authToken = process.env.AUTH_TOKEN_TWILLIO;
+const client = require('twilio')(accountSid, authToken);
 
 mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -108,6 +109,16 @@ app.get('/approved-image', (req, res) => {
     })
 })
 
+function sendSMS() {
+    client.messages
+    .create({
+        body: 'Someone has agreed to pick up your supplies! Please check your email for more information. (from www.grimesapp.com)',
+        from: process.env.PHONE_NUMBER,
+        to: process.env.MY_PHONE_NUMBER
+    })
+    .then(message => console.log(message.sid));
+}
+
 app.post(('/approved-image'), (req, res) => {
     ApprovedImage.deleteMany({}, function(err, result){});
     const approvedImage = new ApprovedImage({
@@ -144,6 +155,7 @@ app.route('/submit-supplies').post((req, res) => {
         suppliesNeeded: req.body.suppliesNeeded
     })
     supply.save();
+    sendSMS();
     email.sendSupplyEmail(req.body);
     res.status(201).json({
         message: 'Hello'
