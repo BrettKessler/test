@@ -8,7 +8,8 @@ const supplySchema = mongoose.Schema({
     zipCode: Number,
     supplyDescription: String,
     phoneNumber: String,
-    suppliesNeeded: String
+    suppliesNeeded: String,
+    ipAddess: String
 });
 const collectionName = 'supplies'
 module.exports = mongoose.model('Supply', supplySchema, collectionName);

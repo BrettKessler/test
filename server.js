@@ -152,7 +152,8 @@ app.route('/submit-supplies').post((req, res) => {
         phoneNumber: req.body.phoneNumber,
         zipCode: req.body.zipCode,
         supplyDescription: req.body.supplyDescription,
-        suppliesNeeded: req.body.suppliesNeeded
+        suppliesNeeded: req.body.suppliesNeeded,
+        ipAddess: req.ip
     })
     supply.save();
     sendSMS();
