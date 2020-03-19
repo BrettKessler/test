@@ -167,7 +167,7 @@
                           <div class="payment">
                             <label>Choose Your Payment Type</label>
                             <select class="payment" multiple formControlName="paymentType" required>
-                              <option *ngFor="let payment of payments" [ngValue]="payment" (change)="changePayment($event)">{{payment}}
+                              <option *ngFor="let payment of payments" [ngValue]="payment">{{payment}}
                               </option>
                            </select>
                           </div>
