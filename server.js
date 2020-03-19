@@ -153,6 +153,7 @@ app.route('/submit-supplies').post((req, res) => {
         zipCode: req.body.zipCode,
         supplyDescription: req.body.supplyDescription,
         suppliesNeeded: req.body.suppliesNeeded,
+        paymentType: req.body.paymentType[0],
         ipAddess: req.ip
     })
     supply.save();

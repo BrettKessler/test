@@ -17,6 +17,7 @@ export class SuppliesComponent implements OnInit {
   submitLoading: boolean = false;
   supplyArray: any;
   singleSupplyItem: any;
+  payments: any = ['Cash', 'Check', 'Donation'];
   constructor(private supplyService: SuppliesService, private router: Router) { }
 
   ngOnInit() {
@@ -27,6 +28,7 @@ export class SuppliesComponent implements OnInit {
       address1: new FormControl('', [Validators.required]),
       address2: new FormControl(''),
       zipCode: new FormControl('', [Validators.required]),
+      paymentType: new FormControl('', [Validators.required]),
       supplyDescription: new FormControl('', [Validators.required]),
       suppliesNeeded: new FormControl('', [Validators.required])
     });
@@ -37,7 +39,9 @@ export class SuppliesComponent implements OnInit {
     });
     this.supplyService.onGetSupplyLists().subscribe((data: any) => {
       this.supplyArray = data.data;
+      console.log( 'Supply Array' ,this.supplyArray)
     })
+    
   }
 
   get f() { return this.supplyList.controls; }

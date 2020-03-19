@@ -1,5 +1,7 @@
-.list {
-    list-style: none;
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 ul>li:nth-child(odd){
@@ -12,12 +14,49 @@ ul>li:nth-child(odd){
 }
 
 ul>li:nth-child(even){
-    background-color: #ffffff;
+    background-color: #dadada;
     padding: 14px;
     &:hover {
         background-color: greenyellow;
         cursor: pointer;
     }
+}
+
+
+.pill {
+    position: absolute;
+    right: 10%;
+    padding: 2px 2%;
+    font-size: 12px;
+    border-radius: 20px;
+    &--cash {
+        background: #17e243;
+    }
+    &--donation {
+        background: #ffd400;
+    }
+    &--check {
+        background: #fd0dbe;
+    }
+    @media only screen and (min-width: 768px) {
+
+    }
+    
+}
+
+.modal {
+    padding: 0px;
+}
+
+.payment{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.name {
+    font-size: 15px;
+    margin-left: 2%;
+    font-weight: 100;
 }
 
 .margin-top {

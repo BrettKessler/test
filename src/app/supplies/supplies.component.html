@@ -5,11 +5,16 @@
   </button>
 
 <h2 class="h2">Click on bars below to see what others need.</h2>
-    <div class="row container d-flex justify-content-center">
+    <div class="container d-flex justify-content-center">
         <div class="col-lg-12 margin-top">
             <ul class="list">
                 <li *ngFor="let todo of supplyArray" (click)="onSupplyClick(todo._id)" data-toggle="modal" data-target="#supplyModal">
-                    <span>{{todo.supplyDescription}}</span>
+                    <span class="name">{{todo.supplyDescription}}</span> <span class="pill" 
+                    [ngClass]="{
+                    'pill--cash': todo.paymentType === 'Cash', 
+                    'pill--donation': todo.paymentType === 'Donation',
+                    'pill--check': todo.paymentType === 'Check'}"
+                    >{{todo.paymentType}}</span>
                 </li>
             </ul>
         </div>
@@ -159,6 +164,13 @@
                             class="form-control"
                             required>
                           </div>
+                          <div class="payment">
+                            <label>Choose Your Payment Type</label>
+                            <select class="payment" multiple formControlName="paymentType" required>
+                              <option *ngFor="let payment of payments" [ngValue]="payment" (change)="changePayment($event)">{{payment}}
+                              </option>
+                           </select>
+                          </div>
                           <div class="form-group col-md-12">
                             <label>Supply Description (ex. "Groceries", "misc")</label>
                             <input
@@ -169,7 +181,7 @@
                             required>
                           </div>
                           <div class="form-group col-md-12">
-                            <label>Supplies needed</label>
+                            <label>Supplies Needed, Please Be Detailed. <br>(ex. "Honey Nut Cheerios", "1 lb Hamburger")</label>
                             <textarea
                             type="text"
                             placeholder="Supplies you need"
