@@ -36,15 +36,13 @@ const KwikStar = require('./backend/models/kwik-star');
 const Image = require('./backend/models/images');
 const ApprovedImage = require('./backend/models/approved-image');
 const Supply = require('./backend/models/supply');
-const https = require('https');
 const axios = require('axios').default;
 const email = require('./services/email-service');
-const puppeteer = require('puppeteer');
 const ical = require('node-ical');
 const calParse = require('cal-parser');
 const schedule = require('node-schedule');
 const moment = require('moment');
-var ObjectId = require('mongodb').ObjectID;
+const ObjectId = require('mongodb').ObjectID;
 const accountSid = process.env.ACCOUNT_SID_TWILLIO;
 const authToken = process.env.AUTH_TOKEN_TWILLIO;
 const client = require('twilio')(accountSid, authToken);
@@ -154,7 +152,8 @@ app.route('/submit-supplies').post((req, res) => {
         phoneNumber: req.body.phoneNumber,
         zipCode: req.body.zipCode,
         supplyDescription: req.body.supplyDescription,
-        suppliesNeeded: req.body.suppliesNeeded
+        suppliesNeeded: req.body.suppliesNeeded,
+        ipAddess: req.ip
     })
     supply.save();
     sendSMS();
