@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from './event-service';
 
 @Component({
   selector: 'app-container',
@@ -8,14 +7,10 @@ import { EventService } from './event-service';
 })
 export class ContainerComponent implements OnInit {
 
-  open: any;
-
-  constructor(public isOpen: EventService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.isOpen.getIsOpen().then((data: any) => {
-      this.open = data.data;
-    });
+
   }
 
 }

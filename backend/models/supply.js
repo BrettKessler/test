@@ -10,6 +10,7 @@ const supplySchema = mongoose.Schema({
     phoneNumber: String,
     suppliesNeeded: String,
     paymentType: String,
+    dateSubmitted: String,
     ipAddess: String
 });
 const collectionName = 'supplies'
